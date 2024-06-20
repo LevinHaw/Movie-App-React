@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
+import {API_URL, API_ACCESS_TOKEN} from '@env'
 
 export default function MovieDetail({ navigation }: { navigation: any }): JSX.Element {
   
@@ -15,20 +16,21 @@ export default function MovieDetail({ navigation }: { navigation: any }): JSX.El
     })
 
     const fetchData = (): void => {
-        const ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYzk4OTQxMWEzOGYxYmYxZTkzYTg3NjFiMTYwMjY2MSIsInN1YiI6IjY2NzQxMmE5ODI0ODYxN2E3MDRlYjcyMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kKFJPVnse8TIpQ2FesQ5NWfoIvihqWr4QRYOh3MyCnU"
 
-        const url = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"
+        if (API_URL == null || API_ACCESS_TOKEN.length == null) {
+            throw new Error('ENV not found')
+          }
 
         const options = {
             method: 'GET',
             headers: {
             accept: 'application/json',
-            Authorization: `Bearer ${ACCESS_TOKEN}`,
+            Authorization: `Bearer ${API_ACCESS_TOKEN}`,
             },
         }
 
-        fetch(url, options)
-        .then(async(response) => await response.json())
+        fetch(API_URL, options)
+        .then((response) => response.json())
         .then((response) => {
             console.log(response)
         })
