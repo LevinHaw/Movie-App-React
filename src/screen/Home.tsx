@@ -1,7 +1,4 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import HomeStackNavigation from "../navigation/HomeStackNavigation";
-import MovieDetail from "./MovieDetail";
 import { MovieListProps } from "../types/app";
 import { ScrollView, StatusBar, View, StyleSheet } from "react-native";
 import MovieList from "../components/movies/MovieList";
@@ -29,7 +26,7 @@ const movieLists: MovieListProps[] = [
   },
 ]
 
-const Home = (): JSX.Element => {
+const HomeScreen = (): JSX.Element => {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -56,4 +53,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Home
+export default HomeScreen
